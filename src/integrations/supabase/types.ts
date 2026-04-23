@@ -14,7 +14,137 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          booking_date: string
+          booking_time: string | null
+          category: string
+          created_at: string
+          end_date: string | null
+          id: string
+          notes: string | null
+          pet_id: string | null
+          price_estimate: number | null
+          provider_id: string
+          provider_name: string
+          status: Database["public"]["Enums"]["booking_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          booking_date: string
+          booking_time?: string | null
+          category: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          notes?: string | null
+          pet_id?: string | null
+          price_estimate?: number | null
+          provider_id: string
+          provider_name: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          booking_date?: string
+          booking_time?: string | null
+          category?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          notes?: string | null
+          pet_id?: string | null
+          price_estimate?: number | null
+          provider_id?: string
+          provider_name?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_pet_id_fkey"
+            columns: ["pet_id"]
+            isOneToOne: false
+            referencedRelation: "pets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pets: {
+        Row: {
+          age_years: number | null
+          breed: string | null
+          created_at: string
+          id: string
+          name: string
+          next_vaccine: string | null
+          next_vaccine_date: string | null
+          notes: string | null
+          photo_url: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          age_years?: number | null
+          breed?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          next_vaccine?: string | null
+          next_vaccine_date?: string | null
+          notes?: string | null
+          photo_url?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          age_years?: number | null
+          breed?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          next_vaccine?: string | null
+          next_vaccine_date?: string | null
+          notes?: string | null
+          photo_url?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          city: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +153,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      booking_status: "confirmed" | "completed" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +280,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: ["confirmed", "completed", "cancelled"],
+    },
   },
 } as const
