@@ -1,16 +1,17 @@
 import { Home, CalendarDays, PawPrint, User } from "lucide-react";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "bookings", label: "Bookings", icon: CalendarDays },
-  { id: "pets", label: "Pets", icon: PawPrint },
-  { id: "profile", label: "Profile", icon: User },
+  { id: "home", label: "Home", icon: Home, path: "/" },
+  { id: "bookings", label: "Bookings", icon: CalendarDays, path: "/bookings" },
+  { id: "pets", label: "Pets", icon: PawPrint, path: "/pets" },
+  { id: "profile", label: "Profile", icon: User, path: "/profile" },
 ];
 
 export const BottomNav = () => {
-  const [active, setActive] = useState("home");
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
     <nav
       aria-label="Primary"
@@ -18,11 +19,11 @@ export const BottomNav = () => {
     >
       {items.map((it) => {
         const Icon = it.icon;
-        const isActive = active === it.id;
+        const isActive = pathname === it.path;
         return (
           <button
             key={it.id}
-            onClick={() => setActive(it.id)}
+            onClick={() => navigate(it.path)}
             className={cn(
               "flex-1 flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-full transition-all",
               isActive

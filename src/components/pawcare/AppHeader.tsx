@@ -1,11 +1,14 @@
-import { MapPin, Bell, Search } from "lucide-react";
+import { MapPin, Bell, Search, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 export const AppHeader = () => {
+  const { user } = useAuth();
   return (
     <header className="sticky top-0 z-40 backdrop-blur-xl bg-background/75 border-b border-border/60">
       <div className="container flex items-center justify-between py-4">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-2xl bg-gradient-cta grid place-items-center text-primary-foreground shadow-soft">
             <span className="font-display text-lg leading-none">🐾</span>
           </div>
@@ -15,14 +18,20 @@ export const AppHeader = () => {
               <MapPin className="h-3 w-3" /> Brooklyn, NY
             </p>
           </div>
-        </div>
+        </Link>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" aria-label="Search">
             <Search />
           </Button>
-          <Button variant="soft" size="icon" aria-label="Notifications">
-            <Bell />
-          </Button>
+          {user ? (
+            <Button variant="soft" size="icon" aria-label="Notifications">
+              <Bell />
+            </Button>
+          ) : (
+            <Button asChild variant="hero" size="sm">
+              <Link to="/auth"><LogIn className="h-4 w-4" /> Sign in</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>

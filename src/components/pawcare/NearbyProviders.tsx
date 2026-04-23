@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Star, MapPin } from "lucide-react";
-import { nearbyProviders } from "@/data/mock";
+import { nearbyProviders, type Provider } from "@/data/mock";
 import { Button } from "@/components/ui/button";
+import BookingDialog from "./BookingDialog";
 
 export const NearbyProviders = () => {
+  const [selected, setSelected] = useState<Provider | null>(null);
+  const [open, setOpen] = useState(false);
+
+  const book = (p: Provider) => {
+    setSelected(p);
+    setOpen(true);
+  };
+
   return (
     <section className="container py-8 md:py-12">
       <div className="flex items-end justify-between mb-6">
@@ -48,11 +58,12 @@ export const NearbyProviders = () => {
                   from <span className="text-primary">${p.priceFrom}</span>
                 </span>
               </div>
-              <Button variant="soft" size="sm" className="w-full mt-3">Book now</Button>
+              <Button variant="soft" size="sm" className="w-full mt-3" onClick={() => book(p)}>Book now</Button>
             </div>
           </article>
         ))}
       </div>
+      <BookingDialog provider={selected} open={open} onOpenChange={setOpen} />
     </section>
   );
 };
