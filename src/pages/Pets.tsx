@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Plus, Trash2, PawPrint, Calendar } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -22,7 +23,7 @@ type Pet = {
 };
 
 const Pets = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [pets, setPets] = useState<Pet[]>([]);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
@@ -82,6 +83,9 @@ const Pets = () => {
     toast({ title: "Pet removed" });
     load();
   };
+
+  if (loading) return null;
+  if (!user) return <Navigate to="/auth" replace />;
 
   return (
     <div className="min-h-screen bg-background pb-28">

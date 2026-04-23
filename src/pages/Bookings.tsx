@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { CalendarDays, Clock, MapPin, Trash2 } from "lucide-react";
+import { Navigate } from "react-router-dom";
+import { CalendarDays, Clock, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import AppHeader from "@/components/pawcare/AppHeader";
@@ -20,7 +21,7 @@ type Booking = {
 };
 
 const Bookings = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
 
   const load = async () => {
@@ -49,6 +50,9 @@ const Bookings = () => {
     toast({ title: "Booking cancelled" });
     load();
   };
+
+  if (loading) return null;
+  if (!user) return <Navigate to="/auth" replace />;
 
   return (
     <div className="min-h-screen bg-background pb-28">
