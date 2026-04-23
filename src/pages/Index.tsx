@@ -1,16 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import AppHeader from "@/components/pawcare/AppHeader";
+import Hero from "@/components/pawcare/Hero";
+import CategoryGrid from "@/components/pawcare/CategoryGrid";
+import NearbyProviders from "@/components/pawcare/NearbyProviders";
+import PetHealth from "@/components/pawcare/PetHealth";
+import ChillWithPaws from "@/components/pawcare/ChillWithPaws";
+import BottomNav from "@/components/pawcare/BottomNav";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background pb-28">
+      <AppHeader />
+      <main>
+        <Hero />
+        <CategoryGrid />
+        <NearbyProviders />
+        <PetHealth />
+        <ChillWithPaws />
+        <footer className="container pt-8 pb-4 text-center text-xs text-muted-foreground">
+          Made with 🐾 for pet parents · PawCare MVP
+        </footer>
+      </main>
+      <BottomNav />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
