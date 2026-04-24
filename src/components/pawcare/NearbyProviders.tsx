@@ -3,6 +3,7 @@ import { Star, MapPin } from "lucide-react";
 import { nearbyProviders, type Provider } from "@/data/mock";
 import { Button } from "@/components/ui/button";
 import BookingDialog from "./BookingDialog";
+import { Link } from "react-router-dom";
 
 export const NearbyProviders = () => {
   const [selected, setSelected] = useState<Provider | null>(null);
@@ -20,7 +21,9 @@ export const NearbyProviders = () => {
           <h2 className="text-2xl md:text-3xl">Nearby favorites</h2>
           <p className="text-sm text-muted-foreground mt-1">Top-rated within 5 km of you.</p>
         </div>
-        <Button variant="ghost" size="sm" className="rounded-full">See all</Button>
+        <Button asChild variant="ghost" size="sm" className="rounded-full">
+          <Link to="/services/grooming">See all</Link>
+        </Button>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

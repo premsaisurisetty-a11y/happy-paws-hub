@@ -1,4 +1,5 @@
 import { categories } from "@/data/mock";
+import { Link } from "react-router-dom";
 
 export const CategoryGrid = () => {
   return (
@@ -12,8 +13,9 @@ export const CategoryGrid = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
         {categories.map((c) => (
-          <button
+          <Link
             key={c.id}
+            to={`/services/${c.id}`}
             className="group text-left rounded-3xl bg-card border border-border/60 overflow-hidden shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300"
           >
             <div className="aspect-[4/3] overflow-hidden bg-muted">
@@ -30,7 +32,7 @@ export const CategoryGrid = () => {
               <p className="font-semibold text-sm md:text-base">{c.title}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{c.tagline}</p>
             </div>
-          </button>
+          </Link>
         ))}
       </div>
     </section>
