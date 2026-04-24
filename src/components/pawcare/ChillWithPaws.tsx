@@ -1,5 +1,6 @@
 import { Star, MapPin } from "lucide-react";
 import { chillSpots } from "@/data/mock";
+import { Link } from "react-router-dom";
 
 export const ChillWithPaws = () => {
   return (
@@ -9,13 +10,17 @@ export const ChillWithPaws = () => {
           <h2 className="text-2xl md:text-3xl">Chill with paws 🐾</h2>
           <p className="text-sm text-muted-foreground mt-1">Pet-friendly cafes & parks loved by locals.</p>
         </div>
+        <Link to="/services/cafes" className="text-sm font-semibold text-primary hover:underline">
+          See all
+        </Link>
       </div>
 
       <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 snap-x snap-mandatory scroll-smooth">
         {chillSpots.map((s) => (
-          <article
+          <Link
             key={s.id}
-            className="snap-start shrink-0 w-72 md:w-80 rounded-3xl overflow-hidden bg-card border border-border/60 shadow-soft hover:shadow-card transition-all duration-300"
+            to="/services/cafes"
+            className="snap-start shrink-0 w-72 md:w-80 rounded-3xl overflow-hidden bg-card border border-border/60 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300"
           >
             <div className="aspect-[4/3] overflow-hidden bg-muted">
               <img
@@ -41,7 +46,7 @@ export const ChillWithPaws = () => {
                 </span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
     </section>
