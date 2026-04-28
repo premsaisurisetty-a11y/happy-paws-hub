@@ -15,10 +15,10 @@ export const AppHeader = () => {
           </div>
           <div>
             <p className="font-display text-lg leading-none">
-              Paw<span className="text-accent">Care</span>
+              Sn<span className="text-accent">iff</span>o
             </p>
             <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-              <MapPin className="h-3 w-3" /> Brooklyn, NY
+              <MapPin className="h-3 w-3" /> Hyderabad, IN
             </p>
           </div>
         </Link>
